@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+commonLabels:
+  app: zk
+
+namespace: kafka
+
+resources:
+- namespace.yaml
+- statefulset.yaml
+- service-client.yaml
+- service-headless.yaml
+
+configMapGenerator:
+  - name: zk-env
+    literals:
+      #- ZOOKEEPER_SERVERS="zk-0.zk-hs.default.svc.cluster.local:2888:3888;zk-1.zk-hs.default.svc.cluster.local:2888:3888;zk-2.zk-hs.default.svc.cluster.local:2888:3888"
+      - ZOOKEEPER_SERVERS="zk-0.zk-hs.default.svc.cluster.local:2888:3888"
+      - ZOOKEEPER_CLIENT_PORT=2181
