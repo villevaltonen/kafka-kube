@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: StatefulSet
+
+metadata:
+  name: zk
+
+spec:
+  serviceName: zk
+  selector:
+    matchLabels:
+      app: zk
+  replicas: 3
+  updateStrategy:
+    type: RollingUpdate
+  podManagementPolicy: OrderedReady
+  template:
+    metadata:
+      labels:
+        app: zk
+    spec:
+      # DOESN'T WORK IN A SINGLE NODE CLUSTER, E.G. MINIKUBE WITH DEFAULTS
+      # affinity:
+      #   podAntiAffinity:
+      #     requiredDuringSchedulingIgnoredDuringExecution:
+      #       - labelSelector:
+      #           matchExpressions:
+      #             - key: "app"
+      #               operator: In
+      #               values:
+      #               - zk
+      #         topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: zk        
+        image: "confluentinc/cp-zookeeper:7.0.0"
+        command:
+          - "bash"
+          - "-c"
+          - |
+            ZK_FIX_HOST_REGEX="s/${HOSTNAME}\.[^:]*:/0.0.0.0:/g"
+            ZOOKEEPER_SERVER_ID=$((${HOSTNAME##*-}+1)) \
+            ZOOKEEPER_SERVERS=`echo $ZOOKEEPER_SERVERS | sed -e "$ZK_FIX_HOST_REGEX"` \
+            /etc/confluent/docker/run
+        # command: ["/bin/bash", "-c", "export ZOOKEEPER_SERVER_ID=$((${HOSTNAME: -1} +1)) && /etc/confluent/docker/run"]
+        env:
+        - name: ZOOKEEPER_SERVERS
+          value: "3"
+        - name: ZOOKEEPER_CLIENT_PORT
+          value: "2181"
+        ports:
+        - containerPort: 2181
+          name: client
+        - containerPort: 2888
+          name: server
+        - containerPort: 3888
+          name: leader-election
+        volumeMounts:        
+        - name: zk-pvc
+          mountPath: "/data"
+          subPath: $(POD_NAME)
+        # envFrom:
+        # - configMapRef:
+        #     name: zk-env
+  volumeClaimTemplates:
+    - metadata:
+        name: zk-pvc
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi
