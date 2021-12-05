@@ -7,9 +7,9 @@ A hobby project to run Kafka with Zookeeper on Kubernetes.
 - Use minikube docker env: `eval $(minikube docker-env)`
 - Build the images with `make`
 - Apply manifests in order:
-    1. Common
-    1. Zookeeper
-    1. Kafka
+1. Common
+1. Zookeeper
+1. Kafka
 
 ## Configuration
 
