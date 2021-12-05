@@ -24,6 +24,13 @@ spec:
       - name: zk 
         imagePullPolicy: "Never"       
         image: "localhost/zookeeper:latest"
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+          privileged: false
+          runAsNonRoot: true
         ports:
         - containerPort: 2181
           name: client
@@ -46,7 +53,7 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
-      # DOESN'T WORK IN A SINGLE NODE CLUSTER, E.G. MINIKUBE WITH DEFAULTS
+      # DOESN'T WORK IN A SINGLE NODE CLUSTER, E.G. IN MINIKUBE WITH DEFAULTS
       # affinity:
       #   podAntiAffinity:
       #     requiredDuringSchedulingIgnoredDuringExecution:
