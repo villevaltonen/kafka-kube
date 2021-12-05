@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: kafka-svc
+
+spec:
+  ports:
+    - name: kafka
+      port: 9092
+      targetPort: kafka

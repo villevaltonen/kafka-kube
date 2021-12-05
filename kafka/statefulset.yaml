@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: StatefulSet
+
+metadata:
+  name: kafka
+
+spec:
+  serviceName: kafka-client
+  selector:
+    matchLabels:
+      app: kafka
+  replicas: 3
+  updateStrategy:
+    type: RollingUpdate
+  podManagementPolicy: OrderedReady
+  template:
+    metadata:
+      labels:
+        app: kafka
+    spec:
+      #terminationGracePeriodSeconds: 10
+      hostname: $(POD_NAME)
+      subdomain: "kafka-client"
+      containers:
+        - name: kafka
+          image: localhost/kafka:latest
+          imagePullPolicy: "Never"
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            privileged: false
+            runAsNonRoot: true
+          ports:
+            - name: kafka
+              containerPort: 9092
+              protocol: TCP
+          volumeMounts:        
+          - name: kafka-data-pvc
+            mountPath: "/home/user/data"
+            subPath: $(POD_NAME)
+          - name: kafka-logs-pvc
+            mountPath: "/home/user/logs"
+            subPath: $(POD_NAME)
+          envFrom:
+          - configMapRef:
+              name: kafka-env
+  volumeClaimTemplates:
+    - metadata:
+        name: kafka-data-pvc
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi
+    - metadata:
+        name: kafka-logs-pvc
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi
+      

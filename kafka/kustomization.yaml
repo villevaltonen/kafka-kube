@@ -1,0 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+commonLabels:
+  app: kafka
+
+resources:
+- statefulset.yaml
+- service.yaml
+
+configMapGenerator:
+  - name: kafka-env
+    literals:
+      - KAFKA_PORT=9092
+      # - KAFKA_LISTENERS=hostname+port
+      # - KAFKA_ADVERTISED_LISTENERS=hostname+port
+      - KAFKA_LOG_DIRS=/home/user/data
+      - KAFKA_NUM_PARTITIONS=3
+      - KAFKA_OFFSET_TOPIC_REPLICATION_FACTOR=3
+      - KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=3
+      - KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=2
+      - KAFKA_ZOOKEEPER_CONNECT=zk-client.kafka.svc.cluster.local
+      - KAFKA_MIN_IN_SYNC_REPLICAS=2
+      - KAFKA_DEFAULT_REPLICATION_FACTOR=3
