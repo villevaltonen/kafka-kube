@@ -7,9 +7,7 @@ RUN tar -xzf apache-zookeeper-3.7.0-bin.tar.gz
 # Runtime
 FROM openjdk:8-jre-slim-bullseye as runtime
 
-# TODO remove vim dnsutils
 RUN apt-get update && apt-get install -y procps vim dnsutils 
-
 RUN adduser --disabled-password -u 1000 user
 
 COPY --from=builder --chown=user:user /apache-zookeeper-3.7.0-bin /home/user/zookeeper/
