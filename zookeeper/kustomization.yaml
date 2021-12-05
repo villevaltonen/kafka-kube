@@ -7,7 +7,6 @@ commonLabels:
 namespace: kafka
 
 resources:
-- namespace.yaml
 - statefulset.yaml
 - service-client.yaml
 - service-headless.yaml
@@ -15,8 +14,9 @@ resources:
 configMapGenerator:
   - name: zk-env
     literals:
-      #- ZOOKEEPER_SERVERS="zk-0.zk-headless.kafka.svc.cluster.local:2888:3888;zk-1.zk-headless.kafka.svc.cluster.local:2888:3888;zk-2.zk-headless.kafka.svc.cluster.local:2888:3888"
-      #- ZOOKEEPER_SERVERS="zk-0.zk-headless.kafka.svc.cluster.local:2888:3888"
-      - ZOO_STANDALONE_ENABLED=false
-      - ZOOKEEPER_CLIENT_PORT=2181
       - ZOOKEEPER_SERVERS=3
+      - ZOOKEEPER_SERVER_PORT=2888
+      - ZOOKEEPER_LEADER_ELECTION_PORT=3888
+      - ZOOKEEPER_CLUSTER_DOMAIN="cluster.local"
+      - ZOOKEEPER_NAMESPACE="kafka"
+      - ZOOKEEPER_SUBDOMAIN="zk-headless"
