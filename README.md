@@ -15,6 +15,7 @@ A hobby project to run Kafka with Zookeeper on Kubernetes.
 
 ### Zookeeper
 Required environment variables:
+
 `ZOOKEEPER_SERVERS`
 How many replicas you have.
 
@@ -27,7 +28,7 @@ Port for server-to-server communication.
 `ZOOKEEPER_LEADER_ELECTION_PORT`
 Port for leader election.
 
-`ZOOKEEPER_DATA_DIR=`
+`ZOOKEEPER_DATA_DIR`
 Directory for Zookeeper data to be stored. Should match with the respective persistent volume claim.
 
 `ZOOKEEPER_LOG_DATA_DIR`
@@ -44,4 +45,7 @@ Needs to match the service and subdomains in the Kubernetes manifest.
 
 
 ### TODO:
-- remove utils from zk image (except procps)
+- remove utils from zk and kafka images (except procps)
+- resources for containers
+- parametritise kafka listener configs
+- add headless svc for kafka?
