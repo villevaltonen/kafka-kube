@@ -12,8 +12,6 @@ configMapGenerator:
   - name: kafka-env
     literals:
       - KAFKA_PORT=9092
-      # - KAFKA_LISTENERS=hostname+port
-      # - KAFKA_ADVERTISED_LISTENERS=hostname+port
       - KAFKA_LOG_DIRS=/home/user/data
       - KAFKA_NUM_PARTITIONS=3
       - KAFKA_OFFSET_TOPIC_REPLICATION_FACTOR=3

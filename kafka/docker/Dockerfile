@@ -9,7 +9,7 @@ RUN tar -xzf kafka_2.13-2.8.1.tgz
 # Runtime
 FROM openjdk:8-jre-slim-bullseye as runtime
 
-RUN apt-get update && apt-get install -y procps vim dnsutils 
+RUN apt-get update && apt-get install -y procps dnsutils 
 RUN adduser --disabled-password -u 1000 user
 
 COPY --from=builder --chown=user:user /kafka_2.13-2.8.1 /home/user/kafka/
