@@ -1,5 +1,5 @@
-set-docker-env:
-	eval $(minikube docker-env)
+minikube:
+	minikube start --driver=virtualbox --memory=8000
 
 build-zookeeper:
 	docker build -f zookeeper/docker/Dockerfile -t localhost/zookeeper:latest zookeeper/docker/
