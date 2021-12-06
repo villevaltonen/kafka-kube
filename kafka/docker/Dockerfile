@@ -2,8 +2,7 @@
 FROM openjdk:8-jre-slim-bullseye as builder
 
 # TODO: remove copy
-#ADD https://archive.apache.org/dist/kafka/2.8.1/kafka_2.13-2.8.1.tgz kafka_2.13-2.8.1.tgz
-COPY kafka_2.13-2.8.1.tgz kafka_2.13-2.8.1.tgz
+ADD https://archive.apache.org/dist/kafka/2.8.1/kafka_2.13-2.8.1.tgz kafka_2.13-2.8.1.tgz
 RUN tar -xzf kafka_2.13-2.8.1.tgz
 
 # Runtime

@@ -8,7 +8,7 @@ echo broker.id=$KAFKA_BROKER_ID >> $KAFKA_CONFIG
 
 # Listener configs
 echo listeners=PLAINTEXT://$HOSTNAME:$KAFKA_PORT >> $KAFKA_CONFIG
-echo advertised.listeners=PLAINTEXT://$HOSTNAME.kafka-headless.kafka.svc.cluster.local:$KAFKA_PORT >> $KAFKA_CONFIG
+echo advertised.listeners=PLAINTEXT://$HOSTNAME.$KAFKA_SUBDOMAIN.$KAFKA_NAMESPACE.svc.$KAFKA_CLUSTER_DOMAIN:$KAFKA_PORT >> $KAFKA_CONFIG
 
 # Log configs
 echo log.dirs=$KAFKA_LOG_DIRS >> $KAFKA_CONFIG
