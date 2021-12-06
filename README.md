@@ -44,9 +44,48 @@ The namespace the pods are deployed into.
 `ZOOKEEPER_SUBDOMAIN`
 Needs to match the service and subdomains in the Kubernetes manifest.
 
+### Kafka
+`KAFKA_PORT`
+Port for Kafka brokers.
+
+`KAFKA_LOG_DIRS`
+Directory to save Kafka logs, i.e. partition data
+
+`KAFKA_NUM_PARTITIONS`
+Default number of partitions for topics.
+
+`KAFKA_OFFSET_TOPIC_REPLICATION_FACTOR`
+Kafka offset topic replication factor.
+
+`KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR`
+Kafka transaction state log replication factor.
+
+`KAFKA_TRANSACTION_STATE_LOG_MIN_ISR`
+Minimum in sync replicas for transaction state log.
+
+`KAFKA_ZOOKEEPER_CONNECT`
+Zookeeper address
+
+`KAFKA_MIN_IN_SYNC_REPLICAS`
+Default minimum for in sync replicas for topics.
+
+`KAFKA_DEFAULT_REPLICATION_FACTOR`
+Default replication factor for topics.
+
+`KAFKA_SUBDOMAIN`
+Needs to match the service and subdomains in the Kubernetes manifest.
+
+`KAFKA_NAMESPACE`
+The namespace the pods are deployed into.
+
+`KAFKA_CLUSTER_DOMAIN`
+Domain of the Kubernetes cluster.
+
+
+Optional environment variables:
+
+`KAFKA_HEAP_OPTS` 
+For example: `"-Xmx512M -Xms512M"`
 
 ### TODO:
-- remove utils from zk and kafka images (except procps)
 - resources for containers
-- parametritise kafka listener configs
-- add headless svc for kafka?
