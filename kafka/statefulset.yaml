@@ -18,7 +18,6 @@ spec:
       labels:
         app: kafka
     spec:
-      #terminationGracePeriodSeconds: 10
       hostname: $(POD_NAME)
       subdomain: "kafka-client"
       containers:

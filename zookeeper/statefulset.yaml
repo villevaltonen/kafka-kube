@@ -54,11 +54,6 @@ spec:
         envFrom:
         - configMapRef:
             name: zk-env
-        env:
-          - name: ZK_NAMESPACE
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.namespace
       # DOESN'T WORK IN A SINGLE NODE CLUSTER, E.G. IN MINIKUBE WITH DEFAULTS
       # affinity:
       #   podAntiAffinity:
