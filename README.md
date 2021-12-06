@@ -44,6 +44,9 @@ The namespace the pods are deployed into.
 `ZOOKEEPER_SUBDOMAIN`
 Needs to match the service and subdomains in the Kubernetes manifest.
 
+`ZOOKEEPER_OPTS`
+Java options for Zookeeper. For example JMX exporting can be done with: `"-Djava.rmi.server.hostname=localhost -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9010 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.rmi.port=9010 -javaagent:/jmx_agent.jar=9556:/home/user/prometheus.conf"`
+
 ### Kafka
 `KAFKA_PORT`
 Port for Kafka brokers.
@@ -86,6 +89,9 @@ Optional environment variables:
 
 `KAFKA_HEAP_OPTS` 
 For example: `"-Xmx512M -Xms512M"`
+
+`KAFKA_OPTS`
+Kafka options. For example Java options for JMX exporting can be done with: `"-Djava.rmi.server.hostname=localhost -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9010 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.rmi.port=9010 -javaagent:/jmx_agent.jar=9556:/home/user/prometheus.conf"`
 
 ### TODO:
 - resources for containers
