@@ -11,3 +11,6 @@ spec:
     - name: kafka
       port: 9092
       targetPort: kafka
+    - name: jmx
+      port: 9556
+      targetPort: jmx

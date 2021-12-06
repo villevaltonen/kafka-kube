@@ -32,12 +32,18 @@ spec:
           privileged: false
           runAsNonRoot: true
         ports:
-        - containerPort: 2181
-          name: client
-        - containerPort: 2888
-          name: server
-        - containerPort: 3888
-          name: leader-election
+        - name: client
+          containerPort: 2181
+          protocol: TCP
+        - name: server
+          containerPort: 2888
+          protocol: TCP
+        - name: leader-election
+          containerPort: 3888
+          protocol: TCP
+        - name: jmx
+          containerPort: 9556
+          protocol: TCP
         volumeMounts:        
         - name: zk-data-pvc
           mountPath: "/home/user/data"

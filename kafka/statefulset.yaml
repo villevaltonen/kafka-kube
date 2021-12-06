@@ -36,6 +36,9 @@ spec:
             - name: kafka
               containerPort: 9092
               protocol: TCP
+            - name: jmx
+              containerPort: 9556
+              protocol: TCP
           volumeMounts:        
           - name: kafka-data-pvc
             mountPath: "/home/user/data"

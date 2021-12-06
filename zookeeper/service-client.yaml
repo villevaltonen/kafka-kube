@@ -8,5 +8,7 @@ spec:
   ports:
   - port: 2181
     name: client
+  - port: 9556
+    name: jmx
   selector:
     app: zk

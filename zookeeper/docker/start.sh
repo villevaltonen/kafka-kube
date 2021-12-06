@@ -22,4 +22,4 @@ done
 cat $ZOOKEEPER_CONFIG
 
 # Start
-java -cp "zookeeper-$ZOOKEEPER_VERSION.jar:$ZOOKEEPER_HOME/lib/*:$ZOOKEEPER_HOME/conf" org.apache.zookeeper.server.quorum.QuorumPeerMain $ZOOKEEPER_CONFIG
+java -cp "zookeeper-$ZOOKEEPER_VERSION.jar:$ZOOKEEPER_HOME/lib/*:$ZOOKEEPER_HOME/conf" $ZOOKEEPER_OPTS org.apache.zookeeper.server.quorum.QuorumPeerMain $ZOOKEEPER_CONFIG
