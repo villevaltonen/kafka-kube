@@ -100,3 +100,6 @@ Administrative operations can be executed within the Kafka pods, but it requires
 
 ## Client configuration
 Clients should be able to access the cluster with the following url `kafka.kafka.svc.cluster.local:9092`, even from other namespaces. It follows the standard pattern of `service.namespace.svc.cluster.local`.
+
+## Disclaimer
+Not a production grade setup.
