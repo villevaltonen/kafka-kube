@@ -6,10 +6,10 @@ metadata:
     app: zk
 spec:
   ports:
-  - port: 2888
-    name: server
-  - port: 3888
-    name: leader-election
+  - name: server
+    port: 2888
+  - name: leader-election
+    port: 3888
   clusterIP: None
   selector:
     app: zk

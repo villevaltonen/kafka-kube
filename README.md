@@ -68,7 +68,7 @@ Kafka transaction state log replication factor.
 Minimum in sync replicas for transaction state log.
 
 `KAFKA_ZOOKEEPER_CONNECT`
-Zookeeper address
+Zookeeper address.
 
 `KAFKA_MIN_IN_SYNC_REPLICAS`
 Default minimum for in sync replicas for topics.
