@@ -5,7 +5,7 @@ metadata:
   name: kafka
 
 spec:
-  serviceName: kafka-client
+  serviceName: kafka
   selector:
     matchLabels:
       app: kafka
@@ -19,7 +19,7 @@ spec:
         app: kafka
     spec:
       hostname: $(POD_NAME)
-      subdomain: "kafka-client"
+      subdomain: "kafka"
       containers:
         - name: kafka
           image: localhost/kafka:latest

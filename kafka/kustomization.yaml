@@ -4,9 +4,11 @@ kind: Kustomization
 commonLabels:
   app: kafka
 
+namespace: kafka
+
 resources:
 - statefulset.yaml
-- service-client.yaml
+- service.yaml
 
 configMapGenerator:
   - name: kafka-env
@@ -20,7 +22,7 @@ configMapGenerator:
       - KAFKA_ZOOKEEPER_CONNECT=zk-client.kafka.svc.cluster.local:2181
       - KAFKA_MIN_IN_SYNC_REPLICAS=2
       - KAFKA_DEFAULT_REPLICATION_FACTOR=3
-      - KAFKA_SUBDOMAIN=kafka-client
+      - KAFKA_SUBDOMAIN=kafka
       - KAFKA_NAMESPACE=kafka
       - KAFKA_CLUSTER_DOMAIN=cluster.local
       - KAFKA_HEAP_OPTS="-Xmx512M -Xms512M"
