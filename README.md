@@ -8,9 +8,12 @@ A hobby project to run Kafka with Zookeeper on Kubernetes.
 - Build the images with `make`
 
 #### Apply manifests in order:
-1. Common
-1. Zookeeper
-1. Kafka
+
+1. `kubectl apply -k common/`
+1. `kubectl apply -k zookeeper/`
+1. `kubectl apply -k kafka/`
+
+Note: Claming and binding the volumes for Zookeeper and Kafka takes some time as well as the initial leader election during the startup of Zookeeper replicas.
 
 ## Configuration
 
