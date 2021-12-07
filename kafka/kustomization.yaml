@@ -7,7 +7,6 @@ commonLabels:
 resources:
 - statefulset.yaml
 - service-client.yaml
-- service-headless.yaml
 
 configMapGenerator:
   - name: kafka-env
