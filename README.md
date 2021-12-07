@@ -96,7 +96,7 @@ Kafka options. For example Java options for JMX exporting can be done with: `-Dj
 
 
 ## Administration
-Administrative operations can be executed within the Kafka pods, but it requires unsetting `KAFKA_OPTS` or an error will raise due bindings by Prometheus Java agent. Default Kafka scripts can be found at `/home/user/kafka/bin`.
+Administrative operations can be executed within the Kafka pods, but it requires unsetting `KAFKA_OPTS` or an error will raise due bindings by Prometheus Java agent. The standard Kafka scripts can be found at `/home/user/kafka/bin`.
 
 ## Client configuration
 Clients should be able to access the cluster with the following url `kafka-client.kafka.svc.cluster.local:9092`, even from other namespaces. It follows the standard pattern of `service.namespace.svc.cluster.local`.
