@@ -94,5 +94,9 @@ For example: `"-Xmx512M -Xms512M"`
 `KAFKA_OPTS`
 Kafka options. For example Java options for JMX exporting can be done with: `-Djava.rmi.server.hostname=localhost -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9010 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.rmi.port=9010 -javaagent:/jmx_agent.jar=9556:/home/user/prometheus.conf`
 
-### TODO:
-- resources for containers
+
+## Administration
+Administrative operations can be executed within the Kafka pods, but it requires unsetting `KAFKA_OPTS` or an error will raise due bindings by Prometheus Java agent. Default Kafka scripts can be found at `/home/user/kafka/bin`.
+
+## Client configuration
+Clients should be able to access the cluster with the following url `kafka-client.kafka.svc.cluster.local:9092`, even from other namespaces. It follows the standard pattern of `service.namespace.svc.cluster.local`.
